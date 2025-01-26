@@ -273,3 +273,4 @@ zipdeploy.pubxml
 
 # Ignorar la carpeta properties/publishprofiles (Perfiles de publicacion)
 properties/publishprofiles/
+/PruebaAzureFunctions/Properties/PublishProfiles

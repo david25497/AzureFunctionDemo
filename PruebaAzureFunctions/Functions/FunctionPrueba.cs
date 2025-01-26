@@ -58,7 +58,7 @@ namespace PruebaAzureFunctions.Functions
                 if (!send)
                     return new BadRequestObjectResult("Ha ocurrido un error al enviar el email");
 
-                return new OkObjectResult("Cambio Function  Trigger");
+                return new OkObjectResult("Proceso Completado");
             }
             catch (Exception e)
             {

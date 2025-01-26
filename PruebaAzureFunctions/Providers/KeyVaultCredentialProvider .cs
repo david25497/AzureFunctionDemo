@@ -21,12 +21,17 @@ namespace PruebaAzureFunctions.Providers
         /// <param name="configuration">Configuración de la aplicación, que contiene la URL del KeyVault.</param>
         public KeyVaultCredentialProvider(IConfiguration configuration)
         {
-            string keyVaultUrl = string.Empty;
-
+            string Load_keyVaultUrl = string.Empty;
+            string Load_smtp_username = string.Empty;
+            string Load_smtp_password = string.Empty;
             try
             {
-                keyVaultUrl = configuration["KeyVaultUrl"];
-                if (string.IsNullOrEmpty(keyVaultUrl))
+                Load_keyVaultUrl = configuration["Load_KeyVaultUrl"];
+                Load_smtp_username = configuration["Load_smtp_username"];
+                Load_smtp_password = configuration["Load_smtp_password"];
+                if (string.IsNullOrEmpty(Load_keyVaultUrl)   ||
+                    string.IsNullOrEmpty(Load_smtp_username) ||
+                    string.IsNullOrEmpty(Load_smtp_password))
                 {
                     error = "ERROR: Sin variables de configuración.";
                 }
@@ -40,7 +45,7 @@ namespace PruebaAzureFunctions.Providers
             try
             {
                 // Intentamos crear el cliente de KeyVault
-                secretClient = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential());
+                secretClient = new SecretClient(new Uri(Load_keyVaultUrl), new DefaultAzureCredential());
             }
             catch (AuthenticationFailedException ex)
             {
@@ -56,8 +61,8 @@ namespace PruebaAzureFunctions.Providers
             }
 
             // Usamos Lazy para cargar los secretos solo cuando se necesiten.
-            _smtpUsername = new Lazy<Task<Result>>(() => LoadSecretAsync(secretClient, "smtp-username"));
-            _smtpPassword = new Lazy<Task<Result>>(() => LoadSecretAsync(secretClient, "smtp-password"));
+            _smtpUsername = new Lazy<Task<Result>>(() => LoadSecretAsync(secretClient, Load_smtp_username));
+            _smtpPassword = new Lazy<Task<Result>>(() => LoadSecretAsync(secretClient, Load_smtp_password));
         }
 
         /// <summary>

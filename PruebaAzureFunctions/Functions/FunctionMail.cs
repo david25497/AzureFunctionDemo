@@ -58,7 +58,7 @@ namespace PruebaAzureFunctions.Functions
                 if (!send)
                     return new BadRequestObjectResult("Ha ocurrido un error al enviar el email");
 
-                return new OkObjectResult("Email ha sido enviado con nuevo commit");
+                return new OkObjectResult("Email enviado exitosamente");
             }
             catch (Exception e)
             {

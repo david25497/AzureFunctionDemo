@@ -2,6 +2,11 @@
 
 Este proyecto implementa Azure Functions y está diseñado para enviar correos electrónicos utilizando Gmail a través de `SmtpClient`. Las claves sensibles se manejan mediante Azure Key Vault con IAM (Identity Access Management) para garantizar la seguridad.
 
+## Link Base
+https://pruebafunctionappdemo.azurewebsites.net/
+## Link EndPoint Principal
+https://pruebafunctionappdemo.azurewebsites.net/api/FunctionSendEmail
+
 ## Descripción
 
 PruebaAzureFunctions es una solución basada en Azure Functions alojada bajo el Consumption Plan. Está configurada para realizar las siguientes tareas principales:
